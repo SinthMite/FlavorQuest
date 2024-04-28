@@ -8,7 +8,7 @@ export default function LogIn( {firebase} ) {
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-    const[loggedIn, setLoggedIn] = useState(true);
+    const[loggedIn, setLoggedIn] = useState(false);
     
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
