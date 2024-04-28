@@ -1,0 +1,98 @@
+:root{
+    --OffWhite: hsl(60, 30%, 95%);
+    --button: linear-gradient(222deg, hsl(26, 100%, 68%) 0%, hsl(22, 100%, 55%) 100%);
+    --hoverButton: linear-gradient(222deg, #5CB8FF 0%, #1AABFF 100%);
+}
+.app-title{
+    font-weight: 900;
+    font-size: 3rem;
+    color: var(--OffWhite);
+}
+.primary-btn{
+    background-image: var(--button);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    transition: background;
+    transition-duration: 2s;
+}
+.primary-btn:hover, .primary-btn:active{
+    background-image: var(--hoverButton);
+}
+.secondary-btn{
+    background-image: var(--hoverButton);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    transition: background;
+    transition-duration: 2s;
+}
+.secondary-btn:hover, .secondary-btn:active{
+    background-image: var(--button);
+}
+.auth-fields-and-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.containerLogIn{
+/* From https://css.glass */
+/* From https://css.glass */
+background: rgba(246, 246, 238, 0.25);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.5px);
+-webkit-backdrop-filter: blur(8.5px);
+   padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    width: 100%;
+    
+}
+.google-btn-logo{
+    width: 3rem;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.provider-btn{
+    background: none;
+}
+body {
+    background-image: url('../assetImages/background.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire viewport */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    background-position: center; /* Centers the background image */
+    background-attachment: fixed; /* Prevents the background image from being scaled when the page is zoomed */
+    background-blend-mode: soft-light;
+    background-color: rgba(0, 0, 0, 0.60);
+}
+
+.inputLog {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--OffWhite);
+    color: #333; /* Adjust the text color as needed */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    font-size: 1rem;
+    outline: none;
+}
+
+.inputLog:focus {
+    box-shadow: 0 0 0 2px #5CB8FF; /* Example focus effect */
+}
+
+.inputLog::placeholder {
+    color: #b5b5b5; /* Adjust the placeholder color as needed */
+}
+
+#logged-out-view{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
