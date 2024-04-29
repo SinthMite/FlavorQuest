@@ -1,8 +1,8 @@
-import './Home.css'
+import './Footer.css'
 import React,{useState} from 'react'
 
 
-export default function Home( ) {
+export default function Footer( ) {
 
     return(
         <>

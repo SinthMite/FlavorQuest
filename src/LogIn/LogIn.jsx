@@ -4,11 +4,13 @@ import googleLogo from '../assetImages/google.svg'
 import background from '../assetImages/background.jpeg'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Home from '../Home/Home.jsx'
+import Header from '../Header/Header.jsx'
+import Footer from '../Footer/Footer.jsx'
 export default function LogIn( {firebase} ) {
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-    const[loggedIn, setLoggedIn] = useState(false);
+    const[loggedIn, setLoggedIn] = useState(true);
     
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -76,6 +78,7 @@ export default function LogIn( {firebase} ) {
         return (
             <>
               {!loggedIn && ( // Render only if not logged in
+              <div className='totalscreenLogView'>
                 <section id="logged-out-view">
                   <div className="containerLogIn">
                     <h1 className="app-title">FlavorQuest</h1>
@@ -92,9 +95,14 @@ export default function LogIn( {firebase} ) {
                     </div>
                   </div>
                 </section>
+                </div>
               )}
               {loggedIn && ( // Render only if logged in
-                <Home firebase={firebase} authSignOut={authSignOut}/>
+                <div className='totalscreenLoggedInView'>
+                    <Header firebase={firebase} authSignOut={authSignOut}/>
+                    <Home />
+                    <Footer/>
+                </div>
               )}
             </>
           );
