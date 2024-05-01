@@ -1,109 +1,134 @@
-import './LogIn.css'
-import React, {useState} from 'react'
-import googleLogo from '../assetImages/google.svg'
-import background from '../assetImages/background.jpeg'
+import './LogIn.css';
+import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import Home from '../Home/Home.jsx'
-import Header from '../Header/Header.jsx'
-import Footer from '../Footer/Footer.jsx'
-export default function LogIn( {firebase} ) {
+import { collection, getDocs } from 'firebase/firestore';
+import Home from '../Home/Home.jsx';
+import Header from '../Header/Header.jsx';
+import Footer from '../Footer/Footer.jsx';
+import googleLogo from '../assetImages/google.svg';
 
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
-    const[loggedIn, setLoggedIn] = useState(true);
-    
+export default function LogIn({ firebase }) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useState(true);
+
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     }
-    const handlePasswordChange = (e) =>{
+
+    const handlePasswordChange = (e) => {
         setPassword(e.target.value)
     }
 
     function authSignInWithGoogle() {
         const provider = new GoogleAuthProvider();
-        signInWithPopup(firebase.auth, provider) // Assuming 'auth' is your Firebase auth instance
+        signInWithPopup(firebase.auth, provider)
             .then((result) => {
-                // Handle successful sign-in
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 const user = result.user;
-                setLoggedIn(true); // Move the 'setLoggedIn' inside the 'then' block
+                setLoggedIn(true);
             })
             .catch((error) => {
-                // Handle sign-in errors
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 const email = error.email;
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                console.error(errorCode, errorMessage, email, credential); // Use 'console.error' for errors
+                console.error(errorCode, errorMessage, email, credential);
             });
     }
 
-    function authSignInWithEmail(){
+    function authSignInWithEmail() {
         signInWithEmailAndPassword(firebase.auth, email, password)
-        .then((userCredential)=>{
-            // Signed in
-            const user = userCredential.user;
-            setLoggedIn(true);
-            setEmail('')
-            setPassword('')
-        }).catch((error)=>{
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error(errorCode, errorMessage);
-        });
+            .then((userCredential) => {
+                const user = userCredential.user;
+                setLoggedIn(true);
+                setEmail('');
+                setPassword('');
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+            });
     };
-    function authCreateAccountWithEmail(){
+
+    function authCreateAccountWithEmail() {
         createUserWithEmailAndPassword(firebase.auth, email, password)
-        .then((userCredential)=>{
-            const user = userCredential.user;
-            setEmail('')
-            setPassword('')
-        }).catch((error)=>{
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error(errorCode, errorMessage);
-        });
+            .then((userCredential) => {
+                const user = userCredential.user;
+                setEmail('');
+                setPassword('');
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+            });
     };
-    function authSignOut(){
+
+    function authSignOut() {
         signOut(firebase.auth)
-        .then(()=>{
-            setLoggedIn(false);
-        }).catch((error)=>{
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.error(errorCode, errorMessage);
-        });
+            .then(() => {
+                setLoggedIn(false);
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+            });
     };
-        return (
-            <>
-              {!loggedIn && ( // Render only if not logged in
-              <div className='totalscreenLogView'>
-                <section id="logged-out-view">
-                  <div className="containerLogIn">
-                    <h1 className="app-title">FlavorQuest</h1>
-                    <div className="provider-buttons">
-                      <button className="provider-btn" onClick={authSignInWithGoogle}>
-                        <img src={googleLogo} alt="Google Logo" className="google-btn-logo" />
-                      </button>
-                    </div>
-                    <div className="auth-fields-and-buttons">
-                      <input className='inputLog' id="email-input" type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
-                      <input  className='inputLog' id="password-input" type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-                      <button className="primary-btn" onClick={authSignInWithEmail}>Sign in</button>
-                      <button className="secondary-btn" onClick={authCreateAccountWithEmail}>Create Account</button>
-                    </div>
-                  </div>
-                </section>
+
+    function guestLogIn() {
+        setLoggedIn(true)
+    }
+    async function ApiCatcher() {
+      const collectionPath = "API"; // Collection path
+  
+      try {
+          const querySnapshot = await getDocs(collection(firebase.db, collectionPath));
+  
+          let apiKey = ''; // Initialize apiKey variable
+          querySnapshot.forEach((doc) => {
+              const recipeData = doc.data().Recipe;
+              const recipeString = `${recipeData}`;
+              console.log(recipeString);
+              apiKey = recipeString; // Set apiKey to the retrieved value
+          });
+  
+          return apiKey; // Return the apiKey value
+      } catch (error) {
+          console.error("Error getting documents:", error);
+          return ''; // Return an empty string in case of error
+      }
+  }
+    return (
+        <>
+            {!loggedIn && (
+                <div className='totalscreenLogView'>
+                    <section id="logged-out-view">
+                        <div className="containerLogIn">
+                            <h1 className="app-title">FlavorQuest</h1>
+                            <div className="provider-buttons">
+                                <button className="provider-btn" onClick={authSignInWithGoogle}>
+                                    <img src={googleLogo} alt="Google Logo" className="google-btn-logo" />
+                                </button>
+                            </div>
+                            <div className="auth-fields-and-buttons">
+                                <input className='inputLog' id="email-input" type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+                                <input className='inputLog' id="password-input" type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+                                <button className="primary-btn" onClick={authSignInWithEmail}>Sign in</button>
+                                <button className="secondary-btn" onClick={authCreateAccountWithEmail}>Create Account</button>
+                                <button className="tri-btn" onClick={guestLogIn}>Guest</button>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-              )}
-              {loggedIn && ( // Render only if logged in
+            )}
+            {loggedIn && (
                 <div className='totalscreenLoggedInView'>
-                    <Header firebase={firebase} authSignOut={authSignOut}/>
-                    <Home />
-                    <Footer/>
+                    <Header firebase={firebase} authSignOut={authSignOut} />
+                    <Home ApiCatcher={ApiCatcher} />
+                    <Footer />
                 </div>
-              )}
-            </>
-          );
-        }    
+            )}
+        </>
+    );
+}
