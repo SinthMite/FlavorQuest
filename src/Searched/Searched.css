@@ -1,0 +1,26 @@
+.SearchedSection{
+    background-color: rgb(255, 255, 255);
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+
+
+.items{
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+}
+
+.items li{
+    list-style: none;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
