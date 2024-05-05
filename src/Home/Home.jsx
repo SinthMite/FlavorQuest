@@ -67,13 +67,14 @@ export default function Home({ ApiCatcher }) {
                         handleChange={handleChange}
                         loading={loading}
                         error={error}
+                        ApiCatcher={ApiCatcher}
                     />
                 </div>
             ) : (
                 <div>
                     <h1 className='title'>Flavor Quest</h1>
                     <h2 className='subTitle'>Have what you want, when you want it, how you want it.</h2>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="search-form">
                         <input
                             onChange={handleChange}
                             type="text"
@@ -81,8 +82,9 @@ export default function Home({ ApiCatcher }) {
                             aria-label="Search for a flavor"
                             value={search}
                             disabled={loading}
+                            className="search-input"
                         />
-                        <button type="submit" disabled={loading}>
+                        <button type="submit" disabled={loading} className="search-button">
                             {loading ? 'Searching...' : 'Search'}
                         </button>
                     </form>
