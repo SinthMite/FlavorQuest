@@ -1,11 +1,12 @@
 import './LogIn.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { collection, getDocs } from 'firebase/firestore';
 import Home from '../Home/Home.jsx';
 import Header from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
 import googleLogo from '../assetImages/google.svg';
+import { json } from 'react-router';
 
 export default function LogIn({ firebase }) {
     const [email, setEmail] = useState('');
@@ -79,6 +80,15 @@ export default function LogIn({ firebase }) {
     function guestLogIn() {
         setLoggedIn(true)
     }
+
+    useEffect(() => {
+        window.localStorage.setItem('LogInValue', JSON.stringify(loggedIn));
+    }, [loggedIn]);
+    
+    useEffect(() => {
+        const LogInData = window.localStorage.getItem('LogInValue');
+        if (LogInData !== null) setLoggedIn(JSON.parse(LogInData));
+    }, []);
     async function ApiCatcher() {
       const collectionPath = "API"; // Collection path
   
