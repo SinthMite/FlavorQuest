@@ -6,7 +6,6 @@ import Home from '../Home/Home.jsx';
 import Header from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
 import googleLogo from '../assetImages/google.svg';
-import { json } from 'react-router';
 
 export default function LogIn({ firebase }) {
     const [email, setEmail] = useState('');
