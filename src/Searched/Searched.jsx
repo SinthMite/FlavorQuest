@@ -33,18 +33,19 @@ export default function Searched({ recipes, setRecipes, search, setSearch, handl
         fetchData();
     }, [recipeIds]);
 
+    const key = '808e32640310404f804f49970d25c2f7'
     async function fetchRecipeInformation(recipeIds) {
         const recipeIdString = recipeIds.join(','); // Convert the array of recipe IDs into a comma-separated string
-        const url = `https://api.spoonacular.com/recipes/informationBulk?apiKey=${ApiCatcher()}&ids=${recipeIdString}`;
-    
+        const url = `https://api.spoonacular.com/recipes/informationBulk?apiKey=${key}&ids=${recipeIdString}`;
         try {
             const response = await fetch(url);
-    
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
     
             const data = await response.json();
+            console.log(data)
             return data;
         } catch (error) {
             console.error('Error fetching recipe information:', error);
