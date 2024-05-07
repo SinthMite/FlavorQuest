@@ -24,90 +24,79 @@ export default function LogIn({ firebase }) {
         const provider = new GoogleAuthProvider();
         signInWithPopup(firebase.auth, provider)
             .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                const user = result.user;
-                setLoggedIn(true);
+                setLoggedIn(true); // Set loggedIn state to true on successful login
+                window.localStorage.setItem('LogInValue', JSON.stringify(true)); // Update local storage value
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                const email = error.email;
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                console.error(errorCode, errorMessage, email, credential);
+                console.error("Google Auth Error:", error);
             });
     }
 
     function authSignInWithEmail() {
         signInWithEmailAndPassword(firebase.auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
-                setLoggedIn(true);
+                setLoggedIn(true); // Set loggedIn state to true on successful login
+                window.localStorage.setItem('LogInValue', JSON.stringify(true)); // Update local storage value
                 setEmail('');
                 setPassword('');
             }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error(errorCode, errorMessage);
+                console.error("Email Auth Error:", error);
             });
     };
 
     function authCreateAccountWithEmail() {
         createUserWithEmailAndPassword(firebase.auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
                 setEmail('');
                 setPassword('');
             }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error(errorCode, errorMessage);
+                console.error("Create Account Error:", error);
             });
     };
 
     function authSignOut() {
         signOut(firebase.auth)
             .then(() => {
-                setLoggedIn(false);
+                setLoggedIn(false); // Set loggedIn state to false on logout
+                window.localStorage.setItem('LogInValue', JSON.stringify(false)); // Update local storage value
             }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error(errorCode, errorMessage);
+                console.error("Sign Out Error:", error);
             });
     };
 
     function guestLogIn() {
-        setLoggedIn(true)
+        setLoggedIn(true); // Set loggedIn state to true for guest login
     }
-
-    useEffect(() => {
-        window.localStorage.setItem('LogInValue', JSON.stringify(loggedIn));
-    }, [loggedIn]);
-    
     useEffect(() => {
         const LogInData = window.localStorage.getItem('LogInValue');
-        if (LogInData !== null) setLoggedIn(JSON.parse(LogInData));
+        if (LogInData !== null && typeof JSON.parse(LogInData) === 'boolean') {
+            setLoggedIn(JSON.parse(LogInData)); // Set the loggedIn state with the retrieved value
+        } else {
+            setLoggedIn(false); // Default to false if no valid value found in local storage
+        }
     }, []);
+    // Function to fetch API data
     async function ApiCatcher() {
-      const collectionPath = "API"; // Collection path
+        const collectionPath = "API"; // Collection path
   
-      try {
-          const querySnapshot = await getDocs(collection(firebase.db, collectionPath));
+        try {
+            const querySnapshot = await getDocs(collection(firebase.db, collectionPath));
   
-          let apiKey = ''; // Initialize apiKey variable
-          querySnapshot.forEach((doc) => {
-              const recipeData = doc.data().Recipe;
-              const recipeString = `${recipeData}`;
-              console.log(recipeString);
-              apiKey = recipeString; // Set apiKey to the retrieved value
-          });
+            let apiKey = ''; // Initialize apiKey variable
+            querySnapshot.forEach((doc) => {
+                const recipeData = doc.data().Recipe;
+                const recipeString = `${recipeData}`;
+                console.log(recipeString);
+                apiKey = recipeString; // Set apiKey to the retrieved value
+            });
   
-          return apiKey; // Return the apiKey value
-      } catch (error) {
-          console.error("Error getting documents:", error);
-          return ''; // Return an empty string in case of error
-      }
-  }
+            return apiKey; // Return the apiKey value
+        } catch (error) {
+            console.error("Error getting documents:", error);
+            return ''; // Return an empty string in case of error
+        }
+    }
+
     return (
         <>
             {!loggedIn && (
