@@ -1,4 +1,4 @@
-import './Home.css';
+import './Home.scss';
 import React, { useState, useEffect } from 'react';
 import Searched from '../Searched/Searched';
 
@@ -71,9 +71,8 @@ export default function Home({ ApiCatcher }) {
                     />
                 </div>
             ) : (
-                <div>
+                <div className='homeDiv'>
                     <h1 className='title'>Flavor Quest</h1>
-                    <h2 className='subTitle'>Have what you want, when you want it, how you want it.</h2>
                     <form onSubmit={handleSubmit} className="search-form">
                         <input
                             onChange={handleChange}

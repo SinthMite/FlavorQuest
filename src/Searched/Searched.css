@@ -27,13 +27,11 @@
 
 .search-form {
     position: relative;
-    width: 400px;
     margin: 2rem auto;
   }
   .search-input {
-    width: 100%;
+    min-width: 100%;
     border: 1px solid #ccc;
-    border-radius: 100px;
     padding: 10px 100px 10px 20px; 
     line-height: 1;
     box-sizing: border-box;
@@ -50,6 +48,5 @@
     outline: none;
     margin: 0;
     padding: 0 10px;
-    border-radius: 100px;
     z-index: 2;
   }

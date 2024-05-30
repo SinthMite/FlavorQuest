@@ -1,0 +1,95 @@
+{
+    "menu": [
+      {
+        "name": "Margherita Pizza",
+        "price": 12.99,
+        "images": [
+          "https://images.pexels.com/photos/1251260/pexels-photo-1251260.jpeg",
+          "https://images.pexels.com/photos/2232/vegetables-italian-pizza-restaurant.jpg",
+          "https://images.pexels.com/photos/724216/pexels-photo-724216.jpeg"
+        ],
+        "ingredients": [
+          "Tomato sauce",
+          "Mozzarella cheese",
+          "Fresh basil",
+          "Olive oil",
+          "Salt"
+        ],
+        "calories": 850
+      },
+      {
+        "name": "Caesar Salad",
+        "price": 9.99,
+        "images": [
+          "https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg",
+          "https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg",
+          "https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg"
+        ],
+        "ingredients": [
+          "Romaine lettuce",
+          "Caesar dressing",
+          "Parmesan cheese",
+          "Croutons",
+          "Lemon juice",
+          "Garlic",
+          "Anchovies"
+        ],
+        "calories": 450
+      },
+      {
+        "name": "Spaghetti Carbonara",
+        "price": 14.99,
+        "images": [
+          "https://images.pexels.com/photos/2772535/pexels-photo-2772535.jpeg",
+          "https://images.pexels.com/photos/4170543/pexels-photo-4170543.jpeg",
+          "https://images.pexels.com/photos/5940855/pexels-photo-5940855.jpeg"
+        ],
+        "ingredients": [
+          "Spaghetti",
+          "Eggs",
+          "Pancetta",
+          "Parmesan cheese",
+          "Black pepper",
+          "Salt"
+        ],
+        "calories": 700
+      },
+      {
+        "name": "Grilled Chicken Sandwich",
+        "price": 10.99,
+        "images": [
+          "https://images.pexels.com/photos/3026807/pexels-photo-3026807.jpeg",
+          "https://images.pexels.com/photos/4106484/pexels-photo-4106484.jpeg",
+          "https://images.pexels.com/photos/4106486/pexels-photo-4106486.jpeg"
+        ],
+        "ingredients": [
+          "Grilled chicken breast",
+          "Lettuce",
+          "Tomato",
+          "Mayonnaise",
+          "Whole wheat bun"
+        ],
+        "calories": 600
+      },
+      {
+        "name": "Cheeseburger",
+        "price": 11.99,
+        "images": [
+          "https://images.pexels.com/photos/1639567/pexels-photo-1639567.jpeg",
+          "https://images.pexels.com/photos/1049620/pexels-photo-1049620.jpeg",
+          "https://images.pexels.com/photos/1101984/pexels-photo-1101984.jpeg"
+        ],
+        "ingredients": [
+          "Beef patty",
+          "Cheddar cheese",
+          "Lettuce",
+          "Tomato",
+          "Onion",
+          "Pickles",
+          "Burger bun"
+        ],
+        "calories": 800
+      }
+    ]
+  }
+  

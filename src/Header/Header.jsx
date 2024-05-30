@@ -1,6 +1,6 @@
-import './Header.css';
+import './Header.scss';
 import React from 'react';
-
+import defaultProfile from '../assetImages/default-profile-image.png'
 export default function Header({ firebase, authSignOut }) {
     const { currentUser } = firebase.auth;
 
@@ -24,10 +24,18 @@ export default function Header({ firebase, authSignOut }) {
     return (
         <section id="logged-in-view">
             <div className="container">
-                {currentUser ? renderProfilePicture(currentUser) : <img src="default-profile-image.png" alt="Default Profile" />}
+                {currentUser ? renderProfilePicture(currentUser) : <img src={defaultProfile} alt="Default Profile" />}
+                <ul>
+                    <li>Dining</li>
+                    <li>Menu</li>
+                    <li>Events</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+                <button>Book A Table</button>
                 <button onClick={authSignOut}>Log Out</button>
-                <h3 className='greeting'>{renderUserGreeting(currentUser)}</h3>
             </div>
+                <h3 className='greeting'>{renderUserGreeting(currentUser)}</h3>
         </section>
     );
 }
