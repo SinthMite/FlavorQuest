@@ -1,3 +1,124 @@
-.homeDiv{
-    min-width: 80%;
-}
+.bannerHome {
+    position: relative;
+  
+    video {
+      width: 100%;
+      height: auto;
+      filter: brightness(0.6);
+    }
+  
+    h2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 6em;
+      font-weight: 100;
+      text-align: center;
+    }
+  }
+  .carouselSection{
+    background-color: rgb(255, 255, 255);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  
+    .carousel-button {
+      background: rgb(0, 0, 0);
+      border: none;
+      font-size: 2em;
+      cursor: pointer;
+      z-index: 1;
+  
+      &.prev {
+        position: absolute;
+        left: 0;
+        color: white;
+        background-color: goldenrod;
+        opacity: 50%;
+        border-radius: 50%;
+        margin-left: 5rem;
+      }
+  
+      &.next {
+        position: absolute;
+        right: 0;
+        color: white;
+        background-color: goldenrod;
+        opacity: 50%;
+        border-radius: 50%;
+        margin-right: 5rem;      }
+    }
+  
+    .carousel-images {
+      display: flex;
+      overflow: hidden;
+      width: 50%;
+      position: relative;
+  
+      li {
+        list-style: none;
+        flex: 0 0 100%;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
+  
+        &.active {
+          opacity: 1;
+          position: relative;
+          pointer-events: auto;
+        }
+  
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+  }
+      .button-view-menu{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        border: solid goldenrod;
+        color: goldenrod;
+    }
+    .eventSection{
+        display: flex;
+        flex-wrap: wrap;
+        li{
+            list-style: none;
+            width: 50%;
+
+            img{
+                width: 30rem;
+
+            }
+        }
+    }
+
+    .contactUs-section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        background-color: rgb(202, 187, 148);
+        h2{
+
+        }
+        p{
+            max-width: 50%;
+
+        }
+    }

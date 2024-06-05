@@ -13,14 +13,6 @@ export default function Header({ firebase, authSignOut }) {
         }
     }
 
-    function renderUserGreeting(user) {
-        if (user) {
-            return <h1>Welcome {user.displayName.split(" ")[0]}</h1>;
-        } else {
-            return <h1>Welcome, Guest</h1>;
-        }
-    }
-
     return (
         <section id="logged-in-view">
             <div className="container">
@@ -35,7 +27,6 @@ export default function Header({ firebase, authSignOut }) {
                 <button>Book A Table</button>
                 <button onClick={authSignOut}>Log Out</button>
             </div>
-                <h3 className='greeting'>{renderUserGreeting(currentUser)}</h3>
         </section>
     );
 }

@@ -4,15 +4,21 @@
     height: 100px; /* Adjust the size as needed */
 }
 #logged-in-view{
-    
     .container{
-    min-width: 100vw;
     background-color: white;
     color: black;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    }
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    li{
+        list-style: none;
+        margin-right: 1rem;
     }
     button{
         border-radius: 8px;
@@ -38,5 +44,9 @@
     img{
         width: 75px; /* Adjust the size as needed */
         height: 75px; /* Adjust the size as needed */
+    }
+    .greeting{
+        font-size: 1.5em;
+        font-weight: 100; 
     }
 }
